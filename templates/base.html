@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DigitaTree{% endblock title %}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="{% static 'plugins/fontawesome-free/css/all.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/adminlte.min.css' %}" rel="stylesheet" />
+    {% block extra_css %}{% endblock extra_css %}
+    <link href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}" rel="stylesheet" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+</head>
+<body 
+    class="hold-transition sidebar-mini layout-fixed {% block more-class %} {% endblock %}"
+>
+    {% block no-register %}
+        <div class="wrapper">
+            {% comment %} {% include 'patials/nav_hub.html' %} {% endcomment %}
+            {% include 'partials/sidebar.html' %}
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>
+                                    {{ page_title|default:"Falta um título aqui" }}
+                                </h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'core:dashboard' %}">
+                                            Painel
+                                        </a>
+                                    </li>
+                                    {% block breadcrumb %}{% endblock breadcrumb %}
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="content">
+                    {% block content %}{% endblock content %}
+                </section>
+            </div>
+        </div>
+    {% endblock no-register %}
+    <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/htmx/htmx.min.js' %}"></script>
+    {% block script %}{% endblock script %}
+    <script src="{% static 'js/adminlte.min.js' %}"></script>    
+</body>
+</html>
