@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block more-class %} login-page {% endblock %}
+
+{% block no-register %}
+<div class="login-box">
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+          <a href="../../index2.html" class="h1"><b>Digital</b>Tree</a>
+        </div>
+        <div class="card-body">
+          <p class="login-box-msg">Faça login para iniciar</p>
+          {% crispy form %}
+        </div>
+      </div>
+</div>
+{% endblock no-register %}
+
