@@ -148,7 +148,6 @@ cython_debug/
 static/admin/
 local_settings.py
 .bashrc
-otherfiles/
 other/
 static/
 
