@@ -1,0 +1,8 @@
+Django
+Pillow
+python-decouple
+django-allauth
+django-crispy-forms
+psycopg2-binary
+django-extensions
+uWSGI

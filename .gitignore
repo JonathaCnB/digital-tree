@@ -154,3 +154,4 @@ static/
 step.md
 
 /data
+*.pem
