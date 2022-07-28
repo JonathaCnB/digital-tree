@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">
+        Produtos
+    </li>
+{% endblock breadcrumb %}
+
+{% block content %}
+    {% include 'products/partials/list.html' %}
+    {% include 'products/partials/modal_cad_product.html' %}
+    {% include 'products/partials/modal_cad_group.html' %}
+    {% include 'products/partials/modal_cad_sub_group.html' %}
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'js/products.js' %}"></script>   
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+</script>
+{% endblock script %}

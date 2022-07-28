@@ -1,0 +1,18 @@
+  <div class="modal-header">
+    <h4 class="modal-title">Excluir Produto</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form 
+        id='form-exclude-product'
+        hx-post="{% url 'products:exclude' object.pk %}" 
+        "hx-target": "#cad-product-tbody",
+        "hx-swap": "outerHTML"
+      >
+        {% csrf_token %}
+        <h4>Confirma a exclusão do produto: {{object.product}} ?</h4>
+        <button type="submit" class='btn btn-danger btn-block'>Excluir</button>
+      </form>
+  </div>

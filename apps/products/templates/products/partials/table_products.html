@@ -1,0 +1,38 @@
+{% for obj in obj_list %}
+    <tr>
+        <td>{{ obj.pk }}</td>
+        <td>{{ obj.product }}</td>
+        <td>{{ obj.price }}</td>
+        <td>{{ obj.barcode|default:"" }}</td>
+        <td>{{ obj.group }}</td>
+        <td>{{ obj.sub_group|default:"-" }}</td>
+        <td>
+            <span 
+                class="btn"
+                data-toggle="modal" 
+                data-target="#modal-cad-product"
+                hx-get={% url 'products:update-product' obj.pk %}
+                hx-target='#modal-cad-product-content'
+                hx-swap='innetHTML'
+            >
+                <i class="fas fa-edit"></i>
+            </span>
+            <span 
+                class="btn"
+                data-toggle="modal" 
+                data-target="#modal-cad-group"
+                hx-get={% url 'products:exclude' obj.pk %}
+                hx-target='#modal-cad-group-content'
+                hx-swap='innetHTML'
+            >
+                <i class="far fa-trash-alt"></i>
+            </span>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan='6'>
+        <h3>Nenhum produto cadastrado</h3>
+        </td>
+    </tr>
+{% endfor %}

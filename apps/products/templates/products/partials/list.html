@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Produtos Cadastrados</h3>
+          <div class="card-tools row">
+            <div class="col-md-6">
+              <div class="input-group input-group-sm" style="width: 250px;">
+                <button 
+                  type="button" 
+                  class="btn btn-block btn-outline-primary btn-sm"
+                  data-toggle="modal" 
+                  data-target="#modal-cad-product"
+                  hx-get={% url 'products:cad-product' %}
+                  hx-target='#modal-cad-product-content'
+                  hx-swap='innerHTML'
+                >
+                  Adicionar
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group input-group-sm" style="width: 250px;">
+                <input 
+                  type="text" 
+                  name="table_search" 
+                  class="form-control float-right" 
+                  placeholder="Pesquisar"
+                  hx-post="{% url 'products:search' %}"
+                  hx-target='#cad-product-tbody'
+                  hx-trigger='keyup changed delay:0.3s'
+                >
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body table-responsive p-0" style="height: 85%;">
+          <table class="table table-head-fixed text-nowrap">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Código de Barras</th>
+                <th>Grupo</th>
+                <th>Sub Grupo</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody 
+              id='cad-product-tbody' 
+              hx-get={% url 'products:hx-get-products' %}
+              hx-trigger="revealed, productsListChanged from:body"
+            >
+              {% include 'products/partials/table_products.html' %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
