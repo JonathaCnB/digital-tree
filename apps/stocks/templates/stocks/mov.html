@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">
+        Movimentação Saída
+    </li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="container-fluid">
+    <h2 class="text-center display-4">{{ page_title }}</h2>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group">
+                <input 
+                    type="search"
+                    name='product' 
+                    class="form-control form-control-lg" 
+                    placeholder="Informe nome ou código de barras"
+                    hx-get="{% url 'stocks:search' %}"
+                    hx-target="#row-products"
+                    hx-trigger="keyup changed delay:1s"
+                    hx-swap="innerHTML"
+                    required="required"
+                    hx-vals='{"location": "painel"}'
+                >
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-lg btn-default">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div id='row-products'></div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
