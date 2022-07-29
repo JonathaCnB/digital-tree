@@ -62,6 +62,14 @@ class Iten(TimeStampedUUIDModel):
         null=True,
         blank=True,
     )
+    price = models.DecimalField(
+        verbose_name="Preço",
+        max_digits=7,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        default="0.00",
+    )
 
     class Meta:
         ordering = ("product", "-pk")
