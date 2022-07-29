@@ -111,7 +111,9 @@ class MovimentList(View):
 
     def get(self, *args, **kwargs):
         location = self.request.GET.get("location")
-        qs_moviment = Iten.objects.all()
+        company = self.request.user.user_profiles.company
+        qs_moviment = Iten.objects.select_related("product")
+        qs_moviment = qs_moviment.filter(product__company=company)
         if location == "painel":
             qs_moviment = qs_moviment[0:10]
         ctx = {"obj_list": qs_moviment}
@@ -125,8 +127,9 @@ class MovimentSearch(View):
         location = self.request.GET.get("location")
         search = self.request.GET.get("moviment_search")
         search_split = search.split(" ", 1)
-
-        qs_moviment = Iten.objects.all()
+        company = self.request.user.user_profiles.company
+        qs_moviment = Iten.objects.select_related("product")
+        qs_moviment = qs_moviment.filter(product__company=company)
 
         if "+" not in search and "-" not in search:
             qs_moviment = qs_moviment.filter(
