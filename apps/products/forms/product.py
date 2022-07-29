@@ -71,7 +71,7 @@ class ProductCreateForm(forms.ModelForm):
         ),
     )
     minimum_stock = forms.CharField(
-        error_messages={"required": "Por favor digite um nome válido"},
+        error_messages={"required": "Por favor digite um valor válido"},
         required=True,
         label="Estoque Minímo",
         widget=forms.TextInput(
@@ -95,8 +95,8 @@ class ProductCreateForm(forms.ModelForm):
         ),
     )
     price = forms.CharField(
-        error_messages={"required": "Por favor digite um código válido"},
-        required=False,
+        error_messages={"required": "Por favor digite um valor válido"},
+        required=True,
         label="Preço Unitário",
         widget=forms.TextInput(
             attrs={
@@ -153,7 +153,7 @@ class ProductCreateForm(forms.ModelForm):
         return cleaned_data
 
 
-class ProductUpdateForm(ProductCreateForm):
+class ProductUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.product_id = kwargs.pop("product_id", None)
         super().__init__(*args, **kwargs)
@@ -210,6 +210,78 @@ class ProductUpdateForm(ProductCreateForm):
             Submit("submit", "Registrar"),
         )
 
+    product = forms.CharField(
+        error_messages={"required": "Por favor digite um nome válido"},
+        required=True,
+        label="Produto",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Digite o nome do produto",
+            }
+        ),
+    )
+    minimum_stock = forms.CharField(
+        error_messages={"required": "Por favor digite um nome válido"},
+        required=True,
+        label="Estoque Minímo",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Quantidade miníma",
+                "type": "number",
+                "min": "0",
+                "step": "1",
+            }
+        ),
+    )
+    barcode = forms.CharField(
+        error_messages={"required": "Por favor digite um código válido"},
+        required=False,
+        label="Código de Barras",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Código de barras",
+                "type": "text",
+            }
+        ),
+    )
+    price = forms.CharField(
+        error_messages={"required": "Por favor digite um código válido"},
+        required=True,
+        label="Preço Unitário",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "R$ 0.00",
+                "type": "number",
+                "pattern": "[0-9]{4}.[0-9]{2}",
+                "step": "0.01",
+                "min": "0",
+            }
+        ),
+    )
+    group = forms.ModelChoiceField(
+        label="Grupo",
+        required=False,
+        queryset=Group.objects.filter(is_active=True),
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
+                "required": "required",
+            }
+        ),
+    )
+
+    class Meta:
+        model = Product
+        fields = [
+            "product",
+            "minimum_stock",
+            "unit",
+            "barcode",
+            "price",
+            "sub_group",
+            "group",
+        ]
+
     def save(self, user, commit=True):
         product = super().save(commit=False)
         product.profile = user
@@ -217,3 +289,15 @@ class ProductUpdateForm(ProductCreateForm):
         if commit:
             product.save()
         return product
+
+    def clean(self):
+        cleaned_data = super(ProductUpdateForm, self).clean()
+        group_select = self.data.get("group_select")
+        sub_group_select = self.data.get("sub_group_select")
+        if group_select:
+            group = Group.objects.get(name=group_select)
+            self.cleaned_data["group"] = group
+        if sub_group_select:
+            sub_group = SubGroup.objects.get(name=sub_group_select)
+            self.cleaned_data["sub_group"] = sub_group
+        return cleaned_data
