@@ -11,5 +11,9 @@ urlpatterns = [
     path("mov-single/", views.MovSingleView.as_view(), name="mov-single"),
     path("search-product/", views.SearchProduct.as_view(), name="search"),
     path("moviment/", views.MovimentList.as_view(), name="moviment"),
-    path("moviment-search/", views.MovimentSearch.as_view(), name="moviment-search"),
+    path(
+        "moviment-search/",
+        views.MovimentSearch.as_view(),
+        name="moviment-search",
+    ),
 ]
