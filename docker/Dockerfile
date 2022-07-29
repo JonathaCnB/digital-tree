@@ -34,7 +34,7 @@ RUN python -m venv /py && \
     chmod -R 777 /digitaltree/logs && \
     chmod -R +x /digitaltree/docker/scripts
 
-COPY ./media/profile_default.png /vol/web/media/profile_default.png
+COPY ./staticfiles/images/avatars/profile_default.png /vol/web/media/profile_default.png
 
 ENV PATH="/digitaltree/docker/scripts:/py/bin:$PATH"
 
