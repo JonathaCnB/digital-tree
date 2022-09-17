@@ -1,0 +1,36 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<section id="intro" class="wrapper style1-alt fullscreen fade-up">
+    <div class="inner">
+        <h1>Jonatha Carlos</h1>
+        <p>Sou
+            <span 
+                class="typed"
+                data-typed-items='Desenvolvedor, Freelancer, Full Stack'
+            ></span>
+        </p>
+        <ul class="actions">
+            <li><a href="#one" class="button scrolly">Saiba mais</a></li>
+        </ul>
+    </div>
+</section>
+<section id="one" class="wrapper style2-alt spotlights">
+    <div class="inner">
+        {% include 'portfolio/partials/tecnologies.html' %}             
+    </div>
+</section>
+<section id="two" class="wrapper style4 fade-up">
+    <div class="inner">
+        {% include 'portfolio/partials/projects.html' %}
+    </div>    
+</section>
+<section id="three" class="wrapper style3 fade-up">
+    <div class="inner">
+        {% include 'portfolio/partials/contacts.html' %}
+    </div>
+</section>
+{% endblock content %}
+

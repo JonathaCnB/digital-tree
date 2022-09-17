@@ -1,7 +1,8 @@
 from crispy_forms.utils import render_crispy_form
+from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.template.context_processors import csrf
 from django.views.generic import View
 
@@ -13,6 +14,10 @@ class LoginView(View):
     template_name = "users/login.html"
 
     def get(self, *args, **kwargs):
+        url = f"{self.request.get_host()}"
+        portfolio = settings.PORTIFOLIO_HOST
+        if portfolio in url:
+            return redirect("portfolio:index")
         ctx = {"form": LoginForm()}
         return render(self.request, self.template_name, ctx)
 

@@ -59,6 +59,13 @@ class ProductCreateForm(forms.ModelForm):
             ),
             Submit("submit", "Registrar"),
         )
+        self.fields["group"].choices = [("", "Selecione")] + list(
+            self.fields["group"].choices
+        )[1:]
+
+        self.fields["sub_group"].choices = [("", "Selecione")] + list(
+            self.fields["sub_group"].choices
+        )[1:]
 
     product = forms.CharField(
         error_messages={"required": "Por favor digite um nome válido"},
@@ -116,6 +123,16 @@ class ProductCreateForm(forms.ModelForm):
             attrs={
                 "class": "form-control",
                 "required": "required",
+            }
+        ),
+    )
+    sub_group = forms.ModelChoiceField(
+        label="Sub Grupo",
+        required=False,
+        queryset=SubGroup.objects.filter(is_active=True),
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
             }
         ),
     )

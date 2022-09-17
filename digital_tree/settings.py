@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "apps.core",
     "apps.products",
     "apps.stocks",
+    "apps.portfolio",
 ]
 
 MIDDLEWARE = [
@@ -171,3 +172,5 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 # Redicerionamento apos o cadastro
 ACCOUNT_SIGNUP_REDIRECT_URL = "core:dashboard"
+
+PORTIFOLIO_HOST = config("PORTIFOLIO_HOST")
