@@ -1999,6 +1999,13 @@ input, select, textarea {
 			border-top: solid 1px rgba(255, 255, 255, 0.15);
 			position: relative;
 		}
+			.features .lst-child{
+				padding: 3.5em 3em 1em 7em ;
+				width: 100%;
+				height: 100%;
+				border-top: solid 1px rgba(255, 255, 255, 0.15);
+				position: relative;
+			}
 
 			.features section:nth-child(-n + 2) {
 				border-top-width: 0;
