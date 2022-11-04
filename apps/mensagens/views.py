@@ -29,6 +29,35 @@ class WebHook(View):
 
     def post(self, *args, **kwargs):
         data = json.loads(self.request.body)
+        if "object" in data and "entry" in data:
+            if data["object"] == "whatsapp_business_account":
+                try:
+                    for entry in data["entry"]:
+                        phoneNumber = entry["changes"][0]["value"]["metadata"][
+                            "display_phone_number"
+                        ]
+                        phoneID = entry["changes"][0]["value"]["metadata"][
+                            "phone_number_id"
+                        ]
+                        profileName = entry["changes"][0]["value"]["contacts"][0][
+                            "profile"
+                        ]["name"]
+                        whatsAppId = entry["changes"][0]["value"]["contacts"][0][
+                            "wa_id"
+                        ]
+                        fromId = entry["changes"][0]["value"]["messages"][0]["from"]
+                        messageId = entry["changes"][0]["value"]["messages"][0]["id"]
+                        timestamp = entry["changes"][0]["value"]["messages"][0][
+                            "timestamp"
+                        ]
+                        text = entry["changes"][0]["value"]["messages"][0]["text"][
+                            "body"
+                        ]
+                        phone_number = "5592992034133"
+                        message = f"RE:{text} was received"
+                        sendWhatsApp(phone_number, message)
+                except Exception as e:
+                    print(e)
         return HttpResponse("success", status=200)
 
 
