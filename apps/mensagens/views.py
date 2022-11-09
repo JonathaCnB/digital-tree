@@ -62,7 +62,7 @@ class WebHook(View):
 
 
 def sendWhatsApp(phoneNumber, message):
-    headers = {"Authorization": settings.WHATSAPP_TOKEN}
+    headers = {"Authorization": settings.WHATSAPP_TOKEN_PERMANENT}
     payload = {
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
