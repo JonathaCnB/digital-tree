@@ -8,6 +8,12 @@ urlpatterns = [
     path("", views.IndexStocksView.as_view(), name="index"),
     path("saida/", views.MovExitView.as_view(), name="exit"),
     path("entrada/", views.MovEntryView.as_view(), name="entry"),
+    path("coletiva/", views.MovCollectiveView.as_view(), name="collective"),
+    path(
+            "new-product-collective/",
+            views.NewProductCollective.as_view(),
+            name="new-collective"
+        ),
     path("mov-single/", views.MovSingleView.as_view(), name="mov-single"),
     path("search-product/", views.SearchProduct.as_view(), name="search"),
     path("moviment/", views.MovimentList.as_view(), name="moviment"),

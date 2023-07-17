@@ -1,13 +1,14 @@
 import json
 
-from apps.products.forms.product import ProductCreateForm, ProductUpdateForm
-from apps.products.models import Product
 from crispy_forms.utils import render_crispy_form
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.context_processors import csrf
 from django.views.generic import TemplateView, View
+
+from apps.products.forms.product import ProductCreateForm, ProductUpdateForm
+from apps.products.models import Product
 
 
 class IndexProductView(LoginRequiredMixin, TemplateView):

@@ -2,8 +2,8 @@ Django
 Pillow
 python-decouple
 django-allauth
-django-crispy-forms
+django-crispy-forms==1.14.0
 psycopg2-binary
 django-extensions
-uWSGI
+#uWSGI
 django-localflavor

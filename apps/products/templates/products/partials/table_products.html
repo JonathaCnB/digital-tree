@@ -3,13 +3,22 @@
         <td>{{ obj.pk }}</td>
         <td>{{ obj.product }}</td>
         <td>{{ obj.price }}</td>
+        <td>{{ obj.stock|default:"0" }}</td>
+
+        <td>{{ obj.stock_percentage.0|default:"0" }}</td>
+        <td>
+            <div class="progress progress-xs">
+                <div class="progress-bar bg-{{obj.stock_percentage.1}}" style="width: {{obj.stock_percentage.0}}"></div>
+            </div>
+        </td>
+
         <td>{{ obj.barcode|default:"" }}</td>
         <td>{{ obj.group }}</td>
         <td>{{ obj.sub_group|default:"-" }}</td>
         <td>
-            <span 
+            <span
                 class="btn"
-                data-toggle="modal" 
+                data-toggle="modal"
                 data-target="#modal-cad-product"
                 hx-get={% url 'products:update-product' obj.pk %}
                 hx-target='#modal-cad-product-content'
@@ -17,9 +26,9 @@
             >
                 <i class="fas fa-edit"></i>
             </span>
-            <span 
+            <span
                 class="btn"
-                data-toggle="modal" 
+                data-toggle="modal"
                 data-target="#modal-cad-group"
                 hx-get={% url 'products:exclude' obj.pk %}
                 hx-target='#modal-cad-group-content'

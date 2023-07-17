@@ -146,6 +146,17 @@ class Product(TimeStampedUUIDModel):
 
     objects = ProductManager()
 
+    @property
+    def stock_percentage(self):
+        percentage = (self.stock / self.minimum_stock) * 100
+        if percentage > 50:
+            status = 'good'
+        elif percentage > 25:
+            status = 'warning'
+        else:
+            status = 'danger'
+        return f'{round(percentage,1)}%', status
+
     class Meta:
         ordering = ("product",)
         db_table = "products.product"

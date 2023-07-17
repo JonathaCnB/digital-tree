@@ -8,13 +8,36 @@
   <a href="#" class="nav-link">
     <i class="nav-icon fas fa-compress-alt"></i>
     <p>
-      Movimentaçôes
+      Mov. Simples
       <i class="fas fa-angle-left right"></i>
     </p>
   </a>
   <ul class="nav nav-treeview">
     <li class="nav-item">
       <a href="{% url 'stocks:entry' %}" class="nav-link">
+        <i class="fas fa-plus-circle nav-icon"></i>
+        <p>Entrada</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{% url 'stocks:exit' %}" class="nav-link">
+        <i class="fas fa-minus-circle nav-icon"></i>
+        <p>Saída</p>
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="nav-item">
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-compress-arrows-alt"></i>
+    <p>
+      Mov. Multipla
+      <i class="fas fa-angle-left right"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{% url 'stocks:collective' %}" class="nav-link">
         <i class="fas fa-plus-circle nav-icon"></i>
         <p>Entrada</p>
       </a>

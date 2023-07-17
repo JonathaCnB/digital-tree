@@ -6,10 +6,10 @@
           <div class="card-tools row">
             <div class="col-md-6">
               <div class="input-group input-group-sm" style="width: 250px;">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   class="btn btn-block btn-outline-primary btn-sm"
-                  data-toggle="modal" 
+                  data-toggle="modal"
                   data-target="#modal-cad-product"
                   hx-get={% url 'products:cad-product' %}
                   hx-target='#modal-cad-product-content'
@@ -21,10 +21,10 @@
             </div>
             <div class="col-md-6">
               <div class="input-group input-group-sm" style="width: 250px;">
-                <input 
-                  type="text" 
-                  name="table_search" 
-                  class="form-control float-right" 
+                <input
+                  type="text"
+                  name="table_search"
+                  class="form-control float-right"
                   placeholder="Pesquisar"
                   hx-post="{% url 'products:search' %}"
                   hx-target='#cad-product-tbody'
@@ -46,14 +46,17 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Preço</th>
+                <th>Estoque</th>
+                <th>Percentual</th>
+                <th>Status</th>
                 <th>Código de Barras</th>
                 <th>Grupo</th>
                 <th>Sub Grupo</th>
                 <th>Ação</th>
               </tr>
             </thead>
-            <tbody 
-              id='cad-product-tbody' 
+            <tbody
+              id='cad-product-tbody'
               hx-get={% url 'products:hx-get-products' %}
               hx-trigger="revealed, productsListChanged from:body"
             >

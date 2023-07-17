@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     <li class="breadcrumb-item active">
-        Movimentação Saída
+        Movimentação Avulsa
     </li>
 {% endblock breadcrumb %}
 
@@ -14,10 +14,10 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="input-group">
-                <input 
+                <input
                     type="search"
-                    name='product' 
-                    class="form-control form-control-lg" 
+                    name='product'
+                    class="form-control form-control-lg"
                     placeholder="Informe nome ou código de barras"
                     hx-get="{% url 'stocks:search' %}"
                     hx-target="#row-products"

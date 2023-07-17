@@ -1,7 +1,8 @@
-from apps.stocks.models import Moviment
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Column, Div, Field, Layout, Row
 from django import forms
+
+from apps.stocks.models import Moviment
 
 
 class MovimentCreateForm(forms.ModelForm):
@@ -15,21 +16,23 @@ class MovimentCreateForm(forms.ModelForm):
         }
         self.helper.layout = Layout(
             Row(
-                Column("moviment", css_class="col-md-2"),
-                Column(
-                    Field(
-                        "product",
-                        hx_get="/movimentacao/search-product/",
-                        hx_trigger="keyup",
-                        hx_target="#feedback-search",
-                        hx_swap="innerHTML",
-                        required="required",
-                    ),
-                ),
+                Column("moviment", css_class="col-md-3"),
+                # Column(
+                #     Field(
+                #         "product",
+                #         hx_get="/movimentacao/search-product/",
+                #         hx_trigger="keyup",
+                #         hx_target="#feedback-search",
+                #         hx_swap="innerHTML",
+                #         required="required",
+                #     ),
+                # ),
+                Column('nf', css_class="col-md-9")
             ),
-            Row(
-                Div(id="feedback-search", css_class="col-md-12"),
-            ),
+
+            # Row(
+            #     Div(id="feedback-search", css_class="col-md-12"),
+            # ),
         )
 
     product = forms.CharField(
@@ -52,6 +55,17 @@ class MovimentCreateForm(forms.ModelForm):
                 "type": "number",
                 "min": "0",
                 "step": "1",
+            }
+        ),
+    )
+    nf = forms.CharField(
+        error_messages={"required": "Por favor digite um número válido"},
+        required=True,
+        label="Nº Documento",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Número do documento",
+                "type": "number",
             }
         ),
     )
