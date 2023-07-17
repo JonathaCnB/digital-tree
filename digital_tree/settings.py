@@ -32,7 +32,9 @@ INSTALLED_APPS = [
     "apps.products",
     "apps.stocks",
     "apps.portfolio",
+    "apps.mensagens",
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -174,3 +176,11 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_SIGNUP_REDIRECT_URL = "core:dashboard"
 
 PORTIFOLIO_HOST = config("PORTIFOLIO_HOST")
+
+WHATSAPP_URL = config("WHATSAPP_URL")
+
+WHATSAPP_TOKEN = config("WHATSAPP_TOKEN")
+
+WHATSAPP_TOKEN_PERMANENT = config("WHATSAPP_TOKEN_PERMANENT")
+
+TOKEN_WEBHOOK = config("TOKEN_WEBHOOK")
