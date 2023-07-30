@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from decouple import config
@@ -124,14 +125,14 @@ TIME_FORMAT = "G:i"
 USE_THOUSAND_SEPARATOR = True
 
 STATICFILES_DIRS = [
-    BASE_DIR / "staticfiles",
+    os.path.join(BASE_DIR, 'static')
 ]
 
 STATIC_URL = "/static/static/"
 MEDIA_URL = "/static/media/"
 
-MEDIA_ROOT = BASE_DIR / "media"
-STATIC_ROOT = BASE_DIR / "static"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
