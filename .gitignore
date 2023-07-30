@@ -145,11 +145,11 @@ cython_debug/
 
 # other
 .pylintrc
-static/admin/
+#static/admin/
 local_settings.py
 .bashrc
 other/
-static/
+#static/
 
 step.md
 
